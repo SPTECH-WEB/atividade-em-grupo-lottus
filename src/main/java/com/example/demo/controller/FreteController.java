@@ -19,14 +19,20 @@ public class FreteController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Frete>> listarFretes() {
-        List<Frete> fretes = service.findByTipoEntrega(null);
+    public ResponseEntity<List<Frete>> listarTodos() {
+        List<Frete> fretes = service.listarTodos();
+        return ResponseEntity.ok(fretes);
+    }
+
+    @GetMapping("/{tipoEntrega}")
+    public ResponseEntity<List<Frete>> listarFretes(@PathVariable String tipoEntrega) {
+        List<Frete> fretes = service.buscarPorTipoEntrega(tipoEntrega);
         return ResponseEntity.ok(fretes);
     }
 
     @PostMapping
     public ResponseEntity<Frete> criarFrete(@RequestBody Frete frete) {
-        Frete novoFrete = service.salvar(frete);
+        Frete novoFrete = service.salvarFrete(frete);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoFrete);
     }
 }

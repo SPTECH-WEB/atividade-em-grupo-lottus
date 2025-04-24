@@ -1,6 +1,7 @@
 package com.example.demo.strategy;
+import com.example.demo.model.Frete;
 
 public interface FreteStrategy {
 
-    Double calcularFrete(Double peso);
+    Double calcularFrete(Frete frete);
 }
